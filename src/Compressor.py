@@ -4,6 +4,10 @@ from utils import read_file
 
 
 class Compressor:
+    """
+    Enable to compress a file using the Huffman algorithm.
+    """
+
     def __init__(self, path: str):
         self.path: str = path
         self.alphabet_frequency: dict = {}
@@ -129,7 +133,9 @@ class Compressor:
 
     def __write_alphabet_frequency(self, output: str, alphabet_frequency: dict):
         """
-        Write the encoding table to the output file
+        Write the encoding table to the output file.
+        Write escape characters for special characters.
+        For instance \n for newline.
 
         Args:
             output (str): The output file path
@@ -233,7 +239,7 @@ class Compressor:
         Returns:
             float: The average size (bit) of a character in the compressed file
         """
-        compressed_size = os.path.getsize(output)
+        compressed_size = os.path.getsize(output) * 8 # in bits
         number_of_chars = sum(self.alphabet_frequency.values())
         return round(compressed_size / number_of_chars, 2)
 

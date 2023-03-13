@@ -1,4 +1,8 @@
 class Node:
+    """
+    Node class for Huffman Tree
+    """
+
     def __init__(self, char=None, frequency=0, left=None, right=None, parent=None):
         self.char: str | None = char
         self.frequency: int = frequency
